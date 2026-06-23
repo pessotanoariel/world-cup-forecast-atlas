@@ -184,6 +184,6 @@ The project reached Version 1.0 after completing:
 - Monte Carlo simulation engine
 - Editorial Atlas experience
 - GitHub Actions automation
-- FIFA-compliant group tiebreakers
+- FIFA modeled group tiebreakers
 - Most likely tournament path generation
 - Model audit and validation

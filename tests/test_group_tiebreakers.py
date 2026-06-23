@@ -145,11 +145,32 @@ def test_partial_resolution_reapplies_head_to_head_to_remaining_tie():
     ]
 
 
-def test_two_team_tie_still_uses_direct_head_to_head_before_overall_metrics():
+def test_overall_goal_difference_is_applied_before_head_to_head():
     standings_df = _standings(
         [
             ("A", 6, 0, 4),
             ("B", 6, 10, 10),
+            ("C", 3, 0, 3),
+            ("D", 0, -10, 0),
+        ]
+    )
+    predictions_df = _predictions(
+        [
+            ("A", "B", 1, 0),
+        ]
+    )
+
+    assert _ordered_teams(standings_df, predictions_df)[:2] == [
+        "B",
+        "A",
+    ]
+
+
+def test_head_to_head_is_applied_after_overall_points_goal_difference_and_goals():
+    standings_df = _standings(
+        [
+            ("A", 6, 0, 4),
+            ("B", 6, 0, 4),
             ("C", 3, 0, 3),
             ("D", 0, -10, 0),
         ]

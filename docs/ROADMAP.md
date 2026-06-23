@@ -114,7 +114,7 @@ Status: COMPLETED
 ### Score Modeling
 
 * [x] Decouple score prediction from winner prediction
-* [x] Create Expected Goals Model
+* [x] Create goal-expectation score model
 * [x] Create Poisson Probability Model
 * [x] Integrate Poisson into score prediction
 * [x] Align score prediction with winner prediction
@@ -320,7 +320,7 @@ Completed:
 [x] Monte Carlo simulation
 [x] Editorial Atlas
 [x] GitHub Actions automation
-[x] FIFA-compliant tiebreakers
+[x] FIFA modeled group tiebreakers
 [x] Host cities and venues
 [x] SVG flags
 [x] Most likely tournament path

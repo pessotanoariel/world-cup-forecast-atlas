@@ -115,7 +115,7 @@ st.title(
 )
 
 st.subheader(
-    "Powered by Elo Ratings, Expected Goals & Monte Carlo Simulation"
+    "Powered by Elo Ratings, goal-expectation estimates & Monte Carlo Simulation"
 )
 
 forecast_col, finals_col, chart_col = st.columns(3)

@@ -5,6 +5,9 @@ on:
   schedule:
     - cron: "0 6 * * *"
 
+permissions:
+  contents: write
+
 jobs:
   run-pipeline:
     name: Run pipeline
@@ -30,6 +33,18 @@ jobs:
           set -o pipefail
           mkdir -p execution_logs
           python main.py 2>&1 | tee execution_logs/pipeline.log
+
+      - name: Publish refreshed data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/raw data/processed data/output execution_logs
+          if git diff --cached --quiet; then
+            echo "No refreshed data changes to publish."
+          else
+            git commit -m "Refresh tournament data outputs"
+            git push
+          fi
 
       - name: Upload pipeline artifacts
         uses: actions/upload-artifact@v4

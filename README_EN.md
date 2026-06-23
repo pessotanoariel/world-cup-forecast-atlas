@@ -2,7 +2,7 @@
 
 Interactive simulation and forecasting platform for the FIFA World Cup 2026.
 
-Built with Python, Elo Ratings, Monte Carlo simulation, Expected Goals (xG), Poisson score modeling, and Streamlit.
+Built with Python, Elo Ratings, Monte Carlo simulation, goal-expectation estimates derived from match probabilities, Poisson score modeling, and Streamlit.
 
 ---
 
@@ -49,7 +49,7 @@ Instead of presenting predictions as traditional dashboards, the Atlas organizes
 - Elo Ratings
 - Recent Form
 - Host Advantage
-- Expected Goals (xG)
+- Goal-expectation estimates derived from match probabilities
 - Poisson Distribution
 - Monte Carlo Simulation
 - Dynamic Elo Updates
@@ -65,9 +65,8 @@ Instead of presenting predictions as traditional dashboards, the Atlas organizes
 - Complete knockout simulation
 - Extra-time and penalty resolution
 - Tournament champion prediction
-- FIFA-compliant two-team tiebreakers
-- FIFA-style three-team mini-table tiebreakers
-- Deterministic Elo fallback for unresolved ties
+- FIFA group-stage football criteria through head-to-head goals scored
+- Simulator-specific deterministic Elo fallback for unresolved ties after modeled FIFA criteria
 
 ### Monte Carlo Analytics
 
@@ -91,7 +90,7 @@ Instead of presenting predictions as traditional dashboards, the Atlas organizes
 
 - End-to-end tournament pipeline
 - Automated data ingestion
-- Scheduled execution via GitHub Actions
+- Scheduled execution via GitHub Actions with committed refreshed data outputs
 - Data freshness validation
 - Execution logging and monitoring
 - Resilient fallback for external Elo sources
@@ -301,7 +300,7 @@ Completed:
 - Monte Carlo tournament engine
 - Editorial Atlas experience
 - GitHub Actions automation
-- FIFA-compliant group tiebreakers
+- FIFA group-stage tiebreakers through modeled football criteria
 
 Possible future evolutions:
 

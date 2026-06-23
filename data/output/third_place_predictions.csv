@@ -1,2 +1,2 @@
 match_date,team_1,team_2,team_1_win_probability,draw_probability,team_2_win_probability,predicted_winner,predicted_score,confidence,upset_risk
-Third Place,Japan,Colombia,0.448,0.208,0.344,Draw,0-0,Low,HIGH
+Third Place,France,England,0.528,0.25,0.222,Draw,0-0,Medium,LOW

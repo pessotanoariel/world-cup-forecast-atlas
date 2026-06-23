@@ -2,7 +2,7 @@
 
 Atlas interactivo de simulación y pronóstico para la Copa Mundial de la FIFA 2026.
 
-Construido con Python, Elo Ratings, simulación Monte Carlo, modelos de Goles Esperados (xG), distribuciones de Poisson y Streamlit.
+Construido con Python, Elo Ratings, simulación Monte Carlo, estimaciones de gol derivadas de probabilidades de partido, distribuciones de Poisson y Streamlit.
 
 El proyecto comenzó como una herramienta para participar en un prode entre compañeros de trabajo y evolucionó hacia una plataforma de simulación completa capaz de proyectar la fase de grupos, clasificaciones, cuadro eliminatorio y probabilidades de campeón del Mundial 2026.
 
@@ -49,7 +49,7 @@ En lugar de presentar predicciones mediante tablas y dashboards tradicionales, e
 * Elo Ratings
 * Forma reciente
 * Ventaja de local
-* Goles esperados (xG)
+* Estimaciones de gol derivadas de probabilidades de partido
 * Distribución de Poisson
 * Monte Carlo
 * Actualización dinámica de Elo
@@ -65,9 +65,8 @@ En lugar de presentar predicciones mediante tablas y dashboards tradicionales, e
 * Simulación completa de eliminación directa
 * Resolución de empates mediante tiempo suplementario o penales
 * Proyección de campeón
-* Desempates FIFA para empates entre 2 equipos
-* Mini-tablas FIFA para empates entre 3 o más equipos
-* Fallback determinístico basado en Elo
+* Criterios futbolísticos FIFA de fase de grupos hasta goles anotados en enfrentamientos directos
+* Fallback determinístico basado en Elo para empates no resueltos por los criterios modelados
 
 ### Analítica Monte Carlo
 
@@ -90,7 +89,7 @@ En lugar de presentar predicciones mediante tablas y dashboards tradicionales, e
 ### Operación y Automatización
 
 * Pipeline automatizado end-to-end
-* Actualización automática de datasets
+* Actualización programada de datasets y publicación de CSV refrescados
 * GitHub Actions para ejecución programada
 * Validación de frescura de datos
 * Logging y monitoreo de ejecución
@@ -236,7 +235,7 @@ Incluye:
 
 * Elo Ratings
 * Forma reciente
-* Goles esperados
+* Estimaciones de gol
 * Modelado Poisson
 * Simulación Monte Carlo
 
@@ -355,7 +354,7 @@ Completado:
 * Motor Monte Carlo
 * Atlas editorial interactivo
 * Automatización mediante GitHub Actions
-* Desempates FIFA para grupos
+* Desempates de fase de grupos con criterios FIFA modelados
 
 Posibles evoluciones futuras:
 

@@ -22,6 +22,232 @@ TEAM_STRENGTH_PATH = Path(
     "data/processed/team_strength.csv"
 )
 
+LATEST_RESULTS_PATH = Path(
+    "data/raw/latest_results.csv"
+)
+
+TEAMS_LOOKUP_PATH = Path(
+    "data/raw/teams_lookup.csv"
+)
+
+
+def build_match_key(team_1: str, team_2: str) -> tuple[str, str]:
+    return tuple(
+        sorted(
+            [
+                team_1,
+                team_2
+            ]
+        )
+    )
+
+
+def load_completed_group_results(
+    groups_df: pd.DataFrame,
+    latest_results_path: Path = LATEST_RESULTS_PATH,
+    teams_lookup_path: Path = TEAMS_LOOKUP_PATH
+) -> pd.DataFrame:
+
+    columns = [
+        "match_date",
+        "team_1",
+        "team_2",
+        "team_1_goals",
+        "team_2_goals",
+        "result_source"
+    ]
+
+    if not latest_results_path.exists() or not teams_lookup_path.exists():
+        return pd.DataFrame(columns=columns)
+
+    results_df = pd.read_csv(latest_results_path)
+    teams_df = pd.read_csv(teams_lookup_path)
+
+    if results_df.empty:
+        return pd.DataFrame(columns=columns)
+
+    results_df = results_df[
+        results_df["tournament_code"] == "WC"
+    ].copy()
+
+    results_df = results_df.merge(
+        teams_df[["country_code", "team_name"]],
+        left_on="team_1_code",
+        right_on="country_code",
+        how="left"
+    ).rename(
+        columns={
+            "team_name": "team_1"
+        }
+    )
+
+    results_df = results_df.drop(
+        columns=["country_code"],
+        errors="ignore"
+    )
+
+    results_df = results_df.merge(
+        teams_df[["country_code", "team_name"]],
+        left_on="team_2_code",
+        right_on="country_code",
+        how="left"
+    ).rename(
+        columns={
+            "team_name": "team_2"
+        }
+    )
+
+    group_lookup = dict(
+        zip(
+            groups_df["country"],
+            groups_df["group"]
+        )
+    )
+
+    results_df["team_1_group"] = results_df["team_1"].map(group_lookup)
+    results_df["team_2_group"] = results_df["team_2"].map(group_lookup)
+
+    results_df = results_df[
+        results_df["team_1_group"].notna()
+        & results_df["team_2_group"].notna()
+        & (results_df["team_1_group"] == results_df["team_2_group"])
+    ].copy()
+
+    if results_df.empty:
+        return pd.DataFrame(columns=columns)
+
+    results_df["result_source"] = "actual"
+
+    return results_df[columns]
+
+
+def build_group_match_results(
+    predictions_df: pd.DataFrame,
+    groups_df: pd.DataFrame
+) -> pd.DataFrame:
+
+    completed_df = load_completed_group_results(groups_df)
+
+    prediction_matches_df = predictions_df.copy()
+    scores = prediction_matches_df[
+        "predicted_score"
+    ].str.split(
+        "-",
+        expand=True
+    )
+
+    prediction_matches_df["team_1_goals"] = scores[0].astype(int)
+    prediction_matches_df["team_2_goals"] = scores[1].astype(int)
+    prediction_matches_df["result_source"] = "prediction"
+
+    prediction_matches_df = prediction_matches_df[
+        [
+            "match_date",
+            "team_1",
+            "team_2",
+            "team_1_goals",
+            "team_2_goals",
+            "result_source"
+        ]
+    ].copy()
+
+    completed_keys = {
+        build_match_key(row["team_1"], row["team_2"])
+        for _, row in completed_df.iterrows()
+    }
+
+    prediction_matches_df = prediction_matches_df[
+        ~prediction_matches_df.apply(
+            lambda row: build_match_key(row["team_1"], row["team_2"]) in completed_keys,
+            axis=1
+        )
+    ].copy()
+
+    group_matches_df = pd.concat(
+        [
+            completed_df,
+            prediction_matches_df
+        ],
+        ignore_index=True
+    )
+
+    validate_group_match_schedule(
+        group_matches_df,
+        groups_df
+    )
+
+    return group_matches_df
+
+
+def validate_group_match_schedule(
+    group_matches_df: pd.DataFrame,
+    groups_df: pd.DataFrame
+) -> None:
+    group_lookup = dict(
+        zip(
+            groups_df["country"],
+            groups_df["group"]
+        )
+    )
+
+    validation_df = group_matches_df.copy()
+    validation_df["team_1_group"] = validation_df["team_1"].map(group_lookup)
+    validation_df["team_2_group"] = validation_df["team_2"].map(group_lookup)
+
+    invalid_matches = validation_df[
+        validation_df["team_1_group"].isna()
+        | validation_df["team_2_group"].isna()
+        | (validation_df["team_1_group"] != validation_df["team_2_group"])
+    ]
+
+    if not invalid_matches.empty:
+        raise ValueError("Group match results include teams outside the same group.")
+
+    expected_group_count = groups_df["group"].nunique()
+    expected_match_count = expected_group_count * 6
+
+    if len(validation_df) != expected_match_count:
+        raise ValueError(
+            "Group match results must contain exactly "
+            f"{expected_match_count} matches."
+        )
+
+    matches_per_group = validation_df.groupby("team_1_group").size()
+    incomplete_groups = matches_per_group[
+        matches_per_group != 6
+    ]
+
+    if not incomplete_groups.empty or len(matches_per_group) != expected_group_count:
+        raise ValueError("Each group must contain exactly six matches.")
+
+    appearances = pd.concat(
+        [
+            validation_df[["team_1"]].rename(columns={"team_1": "team"}),
+            validation_df[["team_2"]].rename(columns={"team_2": "team"}),
+        ],
+        ignore_index=True
+    )
+
+    appearances = (
+        groups_df[["country"]]
+        .rename(columns={"country": "team"})
+        .merge(
+            appearances.value_counts("team").rename("matches").reset_index(),
+            on="team",
+            how="left"
+        )
+    )
+
+    appearances["matches"] = appearances["matches"].fillna(0).astype(int)
+
+    incomplete_teams = appearances[
+        appearances["matches"] != 3
+    ]
+
+    if not incomplete_teams.empty:
+        raise ValueError("Each team must have exactly three group-stage matches.")
+
+
 def get_head_to_head_stats(
     predictions_df: pd.DataFrame,
     team_a: str,
@@ -151,6 +377,7 @@ def sort_by_final_fallback(
     group_df: pd.DataFrame,
     elo_ratings: dict[str, float]
 ) -> list[str]:
+    """Simulator fallback after official FIFA criteria are exhausted."""
 
     fallback_df = group_df.copy()
     fallback_df["ELO_FALLBACK"] = (
@@ -163,14 +390,10 @@ def sort_by_final_fallback(
         fallback_df
         .sort_values(
             by=[
-                "DG",
-                "GF",
                 "ELO_FALLBACK",
                 "team"
             ],
             ascending=[
-                False,
-                False,
                 False,
                 True
             ]
@@ -310,7 +533,7 @@ def sort_group_standings(
 
         group_rows = []
 
-        for _, points_df in (
+        for _, tied_df in (
             group_df
             .sort_values(
                 by=[
@@ -327,26 +550,30 @@ def sort_group_standings(
                 ]
             )
             .groupby(
-                "PTS",
+                [
+                    "PTS",
+                    "DG",
+                    "GF"
+                ],
                 sort=False
             )
         ):
 
-            if len(points_df) == 1:
-                group_rows.append(points_df.iloc[0])
+            if len(tied_df) == 1:
+                group_rows.append(tied_df.iloc[0])
                 continue
 
             ordered_teams = resolve_tied_teams(
                 predictions_df,
                 group_df,
-                points_df["team"].tolist(),
+                tied_df["team"].tolist(),
                 elo_ratings
             )
 
             for team in ordered_teams:
                 group_rows.append(
-                    points_df[
-                        points_df["team"] == team
+                    tied_df[
+                        tied_df["team"] == team
                     ].iloc[0]
                 )
 
@@ -366,6 +593,11 @@ def build_group_standings() -> pd.DataFrame:
 
     groups_df = pd.read_csv(GROUPS_PATH)
 
+    group_matches_df = build_group_match_results(
+        predictions_df,
+        groups_df
+    )
+
     team_group_mapping = (
         groups_df[
             ["country", "group"]
@@ -377,29 +609,7 @@ def build_group_standings() -> pd.DataFrame:
         )
     )
 
-    scores = predictions_df[
-        "predicted_score"
-    ].str.split(
-        "-",
-        expand=True
-    )
-
-    predictions_df["team_1_goals"] = (
-        scores[0]
-        .astype(int)
-    )
-
-    predictions_df["team_2_goals"] = (
-        scores[1]
-        .astype(int)
-    )
-
-    teams = pd.concat(
-        [
-            predictions_df["team_1"],
-            predictions_df["team_2"]
-        ]
-    ).unique()
+    teams = groups_df["country"].unique()
 
     standings_df = pd.DataFrame({
         "team": teams,
@@ -416,7 +626,7 @@ def build_group_standings() -> pd.DataFrame:
         "H2H_GF": 0
     })
 
-    for _, row in predictions_df.iterrows():
+    for _, row in group_matches_df.iterrows():
 
         team_1 = row["team_1"]
         team_2 = row["team_2"]
@@ -527,12 +737,12 @@ def build_group_standings() -> pd.DataFrame:
     
     standings_df = apply_head_to_head_columns(
         standings_df,
-        predictions_df
+        group_matches_df
     )
 
     standings_df = sort_group_standings(
         standings_df,
-        predictions_df,
+        group_matches_df,
         load_elo_ratings()
     )
 

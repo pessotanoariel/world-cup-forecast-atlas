@@ -26,6 +26,8 @@ def generate_predictions(df: pd.DataFrame, simulation_mode=False) -> pd.DataFram
 
     for _, row in df.iterrows():
 
+        draw_prob = row["draw_probability"]
+
         base_home_prob = row["team_1_win_expectancy"]
 
         form_adjustment = (
@@ -39,7 +41,7 @@ def generate_predictions(df: pd.DataFrame, simulation_mode=False) -> pd.DataFram
         # keep probabilities valid
         home_prob = min(
             max(home_prob, 0),
-            1
+            1 - draw_prob
         )
 
         # probability calibration
@@ -47,16 +49,12 @@ def generate_predictions(df: pd.DataFrame, simulation_mode=False) -> pd.DataFram
             (home_prob - 0.5) * PROBABILITY_SHRINK_FACTOR
         )
 
-        away_prob = (
-            1
-            - home_prob
-            - row["draw_probability"]
+        home_prob = min(
+            max(home_prob, 0),
+            1 - draw_prob
         )
 
-        away_prob = min(
-            max(away_prob, 0),
-            1
-        )
+        away_prob = 1 - home_prob - draw_prob
 
         if home_prob >= 0.60:
             predicted_winner = row["team_1_name"]
@@ -143,7 +141,7 @@ def generate_predictions(df: pd.DataFrame, simulation_mode=False) -> pd.DataFram
             "team_1": row["team_1_name"],
             "team_2": row["team_2_name"],
             "team_1_win_probability": round(home_prob, 3),
-            "draw_probability": round(row["draw_probability"], 3),
+            "draw_probability": round(draw_prob, 3),
             "team_2_win_probability": round(away_prob, 3),
             "predicted_winner": predicted_winner,
             "predicted_score": predicted_score,
