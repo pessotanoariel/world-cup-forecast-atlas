@@ -1,2 +1,2 @@
 match_date,team_1,team_2,team_1_win_probability,draw_probability,team_2_win_probability,predicted_winner,predicted_score,confidence,upset_risk
-Final,Japan,Argentina,0.262,0.08,0.658,Japan,2-0,Medium,LOW
+Final,Brazil,Spain,0.409,0.143,0.448,Brazil,2-1,Low,EXTREME

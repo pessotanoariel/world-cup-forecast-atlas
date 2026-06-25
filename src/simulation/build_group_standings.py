@@ -1,6 +1,9 @@
+import logging
 from pathlib import Path
 
 import pandas as pd
+
+LOGGER = logging.getLogger(__name__)
 
 PREDICTIONS_PATH = Path(
     "data/output/predictions.csv"
@@ -39,6 +42,75 @@ def build_match_key(team_1: str, team_2: str) -> tuple[str, str]:
                 team_2
             ]
         )
+    )
+
+
+def filter_group_stage_matches(
+    matches_df: pd.DataFrame,
+    groups_df: pd.DataFrame,
+    source_name: str,
+) -> pd.DataFrame:
+    if matches_df.empty:
+        return matches_df.copy()
+
+    group_lookup = dict(
+        zip(
+            groups_df["country"],
+            groups_df["group"]
+        )
+    )
+
+    filtered_df = matches_df.copy()
+    filtered_df["team_1_group"] = filtered_df["team_1"].map(group_lookup)
+    filtered_df["team_2_group"] = filtered_df["team_2"].map(group_lookup)
+
+    invalid_mask = (
+        filtered_df["team_1_group"].isna()
+        | filtered_df["team_2_group"].isna()
+        | (filtered_df["team_1_group"] != filtered_df["team_2_group"])
+    )
+    ignored_df = filtered_df[invalid_mask].copy()
+    filtered_df = filtered_df[~invalid_mask].copy()
+    filtered_df["_match_key"] = filtered_df.apply(
+        lambda row: build_match_key(row["team_1"], row["team_2"]),
+        axis=1
+    )
+
+    if "match_date" in filtered_df.columns:
+        filtered_df = filtered_df.sort_values("match_date")
+
+    duplicate_mask = filtered_df.duplicated(
+        subset=["_match_key"],
+        keep="first"
+    )
+    ignored_df = pd.concat(
+        [
+            ignored_df,
+            filtered_df[duplicate_mask]
+        ],
+        ignore_index=True
+    )
+    filtered_df = filtered_df[~duplicate_mask].copy()
+
+    if not ignored_df.empty:
+        ignored_matches = ", ".join(
+            f"{row['team_1']} vs {row['team_2']}"
+            for _, row in ignored_df.iterrows()
+        )
+        LOGGER.warning(
+            "Ignored %s non-group-stage match(es) from %s: %s",
+            len(ignored_df),
+            source_name,
+            ignored_matches
+        )
+
+    return filtered_df.drop(
+        columns=[
+            "team_1_group",
+            "team_2_group",
+            "_match_key"
+        ],
+        errors="ignore"
     )
 
 
@@ -97,21 +169,11 @@ def load_completed_group_results(
         }
     )
 
-    group_lookup = dict(
-        zip(
-            groups_df["country"],
-            groups_df["group"]
-        )
+    results_df = filter_group_stage_matches(
+        results_df,
+        groups_df,
+        source_name=str(latest_results_path)
     )
-
-    results_df["team_1_group"] = results_df["team_1"].map(group_lookup)
-    results_df["team_2_group"] = results_df["team_2"].map(group_lookup)
-
-    results_df = results_df[
-        results_df["team_1_group"].notna()
-        & results_df["team_2_group"].notna()
-        & (results_df["team_1_group"] == results_df["team_2_group"])
-    ].copy()
 
     if results_df.empty:
         return pd.DataFrame(columns=columns)
@@ -139,6 +201,12 @@ def build_group_match_results(
     prediction_matches_df["team_1_goals"] = scores[0].astype(int)
     prediction_matches_df["team_2_goals"] = scores[1].astype(int)
     prediction_matches_df["result_source"] = "prediction"
+
+    prediction_matches_df = filter_group_stage_matches(
+        prediction_matches_df,
+        groups_df,
+        source_name=str(PREDICTIONS_PATH)
+    )
 
     prediction_matches_df = prediction_matches_df[
         [

@@ -1,9 +1,9 @@
 match_date,team_1_name,team_2_name,team_1_rating,team_2_rating,team_1_win_expectancy,team_1_form_score,team_2_form_score,form_score_difference,draw_probability
-Round of 16,Czechia,Scotland,1710.96,1780.69,0.401,6.2,8.1,-1.9,0.201
-Round of 16,Japan,Netherlands,1933.32,1982.4,0.43,11.2,6.8,4.4,0.23
-Round of 16,France,Germany,2086.27,1963.28,0.67,10.2,14.4,-4.2,0.13
-Round of 16,Mexico,Croatia,1944.37,1885.66,0.584,13.5,3.0,10.5,0.216
-Round of 16,Bosnia and Herzegovina,Belgium,1611.68,1875.94,0.179,1.9,8.4,-6.5,0.08
-Round of 16,England,Spain,2062.52,2136.0,0.396,8.5,8.1,0.4,0.196
-Round of 16,Canada,Argentina,1826.68,2147.12,0.137,8.7,15.0,-6.3,0.08
-Round of 16,Colombia,Turkey,1999.46,1821.38,0.736,7.2,7.2,0.0,0.08
+Round of 16,Czechia,Ecuador,1695.87,1870.25,0.268,4.6,6.5,-1.9,0.08
+Round of 16,Japan,Brazil,1933.63,2017.94,0.381,11.2,12.4,-1.2,0.181
+Round of 16,France,Germany,2092.68,1963.91,0.677,10.8,14.4,-3.6,0.123
+Round of 16,Mexico,Croatia,1959.33,1900.2,0.584,13.8,3.0,10.8,0.216
+Round of 16,United States,Belgium,1864.85,1875.03,0.485,7.2,8.4,-1.2,0.25
+Round of 16,England,Spain,2036.85,2136.31,0.361,8.5,8.1,0.4,0.161
+Round of 16,Canada,Argentina,1798.85,2147.12,0.119,7.7,15.0,-7.3,0.08
+Round of 16,Colombia,Turkey,2007.62,1821.58,0.745,9.9,7.2,2.7,0.08

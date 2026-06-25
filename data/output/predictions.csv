@@ -1,17 +1,4 @@
 match_date,team_1,team_2,team_1_win_probability,draw_probability,team_2_win_probability,predicted_winner,predicted_score,confidence,upset_risk
-2026-06-22,Algeria,Jordan,0.703,0.15,0.147,Algeria,2-1,High,LOW
-2026-06-22,France,Iraq,0.836,0.08,0.084,France,2-0,High,LOW
-2026-06-22,Norway,Senegal,0.617,0.17,0.213,Norway,2-1,High,LOW
-2026-06-23,Colombia,DR Congo,0.804,0.08,0.116,Colombia,2-1,High,LOW
-2026-06-23,Croatia,Panama,0.698,0.08,0.222,Croatia,2-1,High,LOW
-2026-06-23,England,Ghana,0.836,0.08,0.084,England,2-0,High,LOW
-2026-06-23,Portugal,Uzbekistan,0.812,0.08,0.108,Portugal,2-1,High,LOW
-2026-06-24,Bosnia and Herzegovina,Qatar,0.689,0.09,0.221,Bosnia and Herzegovina,2-1,High,LOW
-2026-06-24,Brazil,Scotland,0.756,0.08,0.164,Brazil,2-1,High,LOW
-2026-06-24,Canada,Switzerland,0.497,0.25,0.253,Canada,2-1,Medium,LOW
-2026-06-24,Haiti,Morocco,0.138,0.08,0.782,Morocco,1-2,Medium,LOW
-2026-06-24,Mexico,Czechia,0.836,0.08,0.084,Mexico,2-0,High,LOW
-2026-06-24,South Africa,South Korea,0.207,0.08,0.713,South Korea,1-2,Medium,LOW
 2026-06-25,Australia,Paraguay,0.475,0.25,0.275,Australia,2-1,Medium,LOW
 2026-06-25,Curaçao,Ivory Coast,0.155,0.08,0.765,Ivory Coast,1-2,Medium,LOW
 2026-06-25,Ecuador,Germany,0.333,0.17,0.497,Germany,1-2,Medium,MEDIUM
@@ -21,12 +8,13 @@ match_date,team_1,team_2,team_1_win_probability,draw_probability,team_2_win_prob
 2026-06-26,Belgium,New Zealand,0.836,0.08,0.084,Belgium,2-0,High,LOW
 2026-06-26,Cape Verde,Saudi Arabia,0.582,0.25,0.168,Cape Verde,2-1,Medium,LOW
 2026-06-26,Egypt,Iran,0.434,0.25,0.316,Draw,1-1,Low,HIGH
-2026-06-26,France,Norway,0.695,0.09,0.215,France,2-1,High,LOW
-2026-06-26,Iraq,Senegal,0.242,0.08,0.678,Senegal,1-2,Medium,LOW
+2026-06-26,France,Norway,0.662,0.11,0.228,France,2-1,High,LOW
+2026-06-26,Iraq,Senegal,0.256,0.08,0.664,Senegal,1-2,Medium,LOW
 2026-06-26,Spain,Uruguay,0.814,0.08,0.106,Spain,2-1,High,LOW
-2026-06-27,Algeria,Austria,0.4,0.18,0.42,Draw,1-1,Low,EXTREME
+2026-06-27,Algeria,Austria,0.41,0.21,0.38,Draw,1-1,Low,EXTREME
 2026-06-27,Argentina,Jordan,0.836,0.08,0.084,Argentina,2-0,High,LOW
-2026-06-27,Colombia,Portugal,0.518,0.25,0.232,Colombia,2-1,Medium,LOW
-2026-06-27,Croatia,Ghana,0.812,0.08,0.108,Croatia,2-1,High,LOW
-2026-06-27,DR Congo,Uzbekistan,0.51,0.25,0.24,DR Congo,2-1,Medium,LOW
+2026-06-27,Colombia,Portugal,0.509,0.25,0.241,Colombia,2-1,Medium,LOW
+2026-06-27,Croatia,Ghana,0.789,0.08,0.131,Croatia,2-1,High,LOW
+2026-06-27,DR Congo,Uzbekistan,0.528,0.25,0.222,DR Congo,2-1,Medium,LOW
 2026-06-27,England,Panama,0.836,0.08,0.084,England,2-0,High,LOW
+2026-06-28,Canada,South Africa,0.714,0.08,0.206,Canada,2-1,High,LOW

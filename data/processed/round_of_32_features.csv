@@ -1,17 +1,17 @@
 match_date,team_1_name,team_2_name,team_1_rating,team_2_rating,team_1_win_expectancy,team_1_form_score,team_2_form_score,form_score_difference,draw_probability
-Round of 32,Czechia,Switzerland,1696,1885,0.252,6.2,8.1,-1.9,0.08
-Round of 32,Ecuador,Scotland,1864,1768,0.635,6.5,8.1,-1.6,0.165
-Round of 32,Japan,Morocco,1925,1866,0.584,11.2,10.7,0.5,0.216
-Round of 32,Brazil,Netherlands,1986,1972,0.52,12.1,6.8,5.3,0.25
-Round of 32,France,Sweden,2084,1727,0.886,10.2,4.6,5.6,0.08
-Round of 32,Germany,Norway,1954,1929,0.536,14.4,6.8,7.6,0.25
-Round of 32,Mexico,Senegal,1936,1839,0.636,13.5,5.2,8.3,0.164
-Round of 32,Croatia,DR Congo,1881,1674,0.767,3.0,6.2,-3.2,0.08
-Round of 32,United States,Bosnia and Herzegovina,1860,1596,0.82,7.2,1.9,5.3,0.08
-Round of 32,Belgium,Algeria,1869,1759,0.653,8.4,9.7,-1.3,0.147
-Round of 32,Portugal,England,1967,2055,0.376,8.9,8.5,0.4,0.176
-Round of 32,Spain,Algeria,2134,1759,0.896,8.1,9.7,-1.6,0.08
-Round of 32,Canada,Iran,1817,1766,0.573,8.7,10.4,-1.7,0.227
+Round of 32,Czechia,Switzerland,1680,1914,0.206,4.6,9.8,-5.2,0.08
+Round of 32,Ecuador,Sweden,1864,1727,0.688,6.5,4.6,1.9,0.112
+Round of 32,Japan,Morocco,1925,1877,0.569,11.2,9.8,1.4,0.231
+Round of 32,Brazil,Netherlands,2009,1972,0.553,12.4,6.8,5.6,0.247
+Round of 32,France,Iran,2090,1766,0.866,10.8,10.4,0.4,0.08
+Round of 32,Germany,Norway,1954,1951,0.504,14.4,9.5,4.9,0.25
+Round of 32,Mexico,Senegal,1952,1817,0.685,13.8,2.2,11.6,0.115
+Round of 32,Croatia,DR Congo,1896,1666,0.79,3.0,3.2,-0.2,0.08
+Round of 32,United States,Bosnia and Herzegovina,1860,1622,0.797,7.2,3.9,3.3,0.08
+Round of 32,Belgium,South Korea,1869,1723,0.699,8.4,7.8,0.6,0.101
+Round of 32,Portugal,England,1988,2028,0.443,11.8,8.5,3.3,0.243
+Round of 32,Spain,Algeria,2134,1780,0.885,8.1,7.9,0.2,0.08
+Round of 32,Canada,Algeria,1788,1780,0.512,7.7,7.9,-0.2,0.25
 Round of 32,Argentina,Uruguay,2144,1851,0.844,15.0,2.8,12.2,0.08
-Round of 32,Colombia,Ghana,1998,1557,0.927,7.2,1.0,6.2,0.08
+Round of 32,Colombia,Ghana,2006,1584,0.919,9.9,2.9,7.0,0.08
 Round of 32,Turkey,Iran,1813,1766,0.567,7.2,10.4,-3.2,0.233

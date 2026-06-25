@@ -1,32 +1,32 @@
 stage,match_id,team_1,team_2,winner,loser,winner_slot_probability,team_1_slot_win_probability,team_2_slot_win_probability,simulations,method
-Round of 32,73,Czechia,Switzerland,Switzerland,Czechia,0.748,0.252,0.748,1000,monte_carlo_match_slot_consensus
-Round of 32,74,Ecuador,Scotland,Ecuador,Scotland,0.767,0.767,0.233,1000,monte_carlo_match_slot_consensus
-Round of 32,75,Japan,Morocco,Japan,Morocco,0.767,0.767,0.233,1000,monte_carlo_match_slot_consensus
-Round of 32,76,Brazil,Netherlands,Brazil,Netherlands,0.749,0.749,0.251,1000,monte_carlo_match_slot_consensus
-Round of 32,77,France,Sweden,France,Sweden,0.857,0.857,0.143,1000,monte_carlo_match_slot_consensus
-Round of 32,78,Germany,Norway,Germany,Norway,0.778,0.778,0.222,1000,monte_carlo_match_slot_consensus
-Round of 32,79,Mexico,Senegal,Mexico,Senegal,0.803,0.803,0.197,1000,monte_carlo_match_slot_consensus
-Round of 32,80,Croatia,DR Congo,Croatia,DR Congo,0.767,0.767,0.233,1000,monte_carlo_match_slot_consensus
-Round of 32,81,United States,Bosnia and Herzegovina,United States,Bosnia and Herzegovina,0.867,0.867,0.133,1000,monte_carlo_match_slot_consensus
-Round of 32,82,Belgium,Algeria,Belgium,Algeria,0.772,0.772,0.228,1000,monte_carlo_match_slot_consensus
-Round of 32,83,Portugal,England,England,Portugal,0.635,0.365,0.635,1000,monte_carlo_match_slot_consensus
-Round of 32,84,Spain,Algeria,Spain,Algeria,0.849,0.849,0.151,1000,monte_carlo_match_slot_consensus
-Round of 32,85,Canada,Iran,Canada,Iran,0.731,0.731,0.269,1000,monte_carlo_match_slot_consensus
-Round of 32,86,Argentina,Uruguay,Argentina,Uruguay,0.88,0.88,0.12,1000,monte_carlo_match_slot_consensus
-Round of 32,87,Colombia,Ghana,Colombia,Ghana,0.877,0.877,0.123,1000,monte_carlo_match_slot_consensus
-Round of 32,88,Turkey,Iran,Turkey,Iran,0.734,0.734,0.266,1000,monte_carlo_match_slot_consensus
-Round of 16,89,Ecuador,France,Ecuador,France,0.269,0.269,0.0,1000,monte_carlo_match_slot_consensus
-Round of 16,90,Switzerland,Japan,Japan,Switzerland,0.517,0.0,0.517,1000,monte_carlo_match_slot_consensus
-Round of 16,91,Brazil,Germany,Germany,Brazil,0.268,0.0,0.268,1000,monte_carlo_match_slot_consensus
-Round of 16,92,Mexico,Croatia,Mexico,Croatia,0.652,0.652,0.162,1000,monte_carlo_match_slot_consensus
-Round of 16,93,England,Spain,England,Spain,0.0,0.0,0.0,1000,monte_carlo_match_slot_consensus
+Round of 32,73,Czechia,Switzerland,Switzerland,Czechia,0.782,0.218,0.782,1000,monte_carlo_match_slot_consensus
+Round of 32,74,Ecuador,Sweden,Ecuador,Sweden,0.782,0.782,0.218,1000,monte_carlo_match_slot_consensus
+Round of 32,75,Japan,Morocco,Japan,Morocco,0.747,0.747,0.253,1000,monte_carlo_match_slot_consensus
+Round of 32,76,Brazil,Netherlands,Brazil,Netherlands,0.786,0.786,0.214,1000,monte_carlo_match_slot_consensus
+Round of 32,77,France,Iran,France,Iran,0.854,0.854,0.146,1000,monte_carlo_match_slot_consensus
+Round of 32,78,Germany,Norway,Germany,Norway,0.745,0.745,0.255,1000,monte_carlo_match_slot_consensus
+Round of 32,79,Mexico,Senegal,Mexico,Senegal,0.823,0.823,0.177,1000,monte_carlo_match_slot_consensus
+Round of 32,80,Croatia,DR Congo,Croatia,DR Congo,0.817,0.817,0.183,1000,monte_carlo_match_slot_consensus
+Round of 32,81,United States,Bosnia and Herzegovina,United States,Bosnia and Herzegovina,0.827,0.827,0.173,1000,monte_carlo_match_slot_consensus
+Round of 32,82,Belgium,South Korea,Belgium,South Korea,0.794,0.794,0.206,1000,monte_carlo_match_slot_consensus
+Round of 32,83,Portugal,England,Portugal,England,0.68,0.68,0.32,1000,monte_carlo_match_slot_consensus
+Round of 32,84,Spain,Algeria,Spain,Algeria,0.848,0.848,0.152,1000,monte_carlo_match_slot_consensus
+Round of 32,85,Canada,Algeria,Canada,Algeria,0.737,0.737,0.263,1000,monte_carlo_match_slot_consensus
+Round of 32,86,Argentina,Uruguay,Argentina,Uruguay,0.869,0.869,0.131,1000,monte_carlo_match_slot_consensus
+Round of 32,87,Colombia,Ghana,Colombia,Ghana,0.886,0.886,0.114,1000,monte_carlo_match_slot_consensus
+Round of 32,88,Turkey,Iran,Turkey,Iran,0.728,0.728,0.272,1000,monte_carlo_match_slot_consensus
+Round of 16,89,Ecuador,France,Ecuador,France,0.256,0.256,0.0,1000,monte_carlo_match_slot_consensus
+Round of 16,90,Switzerland,Japan,Japan,Switzerland,0.323,0.0,0.323,1000,monte_carlo_match_slot_consensus
+Round of 16,91,Brazil,Germany,Germany,Brazil,0.236,0.0,0.236,1000,monte_carlo_match_slot_consensus
+Round of 16,92,Mexico,Croatia,Mexico,Croatia,0.678,0.678,0.185,1000,monte_carlo_match_slot_consensus
+Round of 16,93,Portugal,Spain,Portugal,Spain,0.0,0.0,0.0,1000,monte_carlo_match_slot_consensus
 Round of 16,94,United States,Belgium,United States,Belgium,0.0,0.0,0.0,1000,monte_carlo_match_slot_consensus
-Round of 16,95,Argentina,Turkey,Argentina,Turkey,0.707,0.707,0.0,1000,monte_carlo_match_slot_consensus
-Round of 16,96,Canada,Colombia,Colombia,Canada,0.7,0.0,0.7,1000,monte_carlo_match_slot_consensus
-Quarterfinals,97,Ecuador,Japan,Japan,Ecuador,0.246,0.1,0.246,1000,monte_carlo_match_slot_consensus
-Quarterfinals,98,England,United States,England,United States,0.0,0.0,0.0,1000,monte_carlo_match_slot_consensus
+Round of 16,95,Argentina,Turkey,Argentina,Turkey,0.753,0.753,0.0,1000,monte_carlo_match_slot_consensus
+Round of 16,96,Canada,Colombia,Colombia,Canada,0.705,0.0,0.705,1000,monte_carlo_match_slot_consensus
+Quarterfinals,97,Ecuador,Japan,Japan,Ecuador,0.148,0.08,0.148,1000,monte_carlo_match_slot_consensus
+Quarterfinals,98,Portugal,United States,Portugal,United States,0.0,0.0,0.0,1000,monte_carlo_match_slot_consensus
 Quarterfinals,99,Germany,Mexico,Germany,Mexico,0.0,0.0,0.0,1000,monte_carlo_match_slot_consensus
-Quarterfinals,100,Argentina,Colombia,Argentina,Colombia,0.591,0.591,0.251,1000,monte_carlo_match_slot_consensus
-Semifinals,101,Japan,England,Japan,England,0.131,0.131,0.0,1000,monte_carlo_match_slot_consensus
-Semifinals,102,Germany,Argentina,Argentina,Germany,0.356,0.0,0.356,1000,monte_carlo_match_slot_consensus
-Final,103,Japan,Argentina,Argentina,Japan,0.25,0.055,0.25,1000,monte_carlo_match_slot_consensus
+Quarterfinals,100,Argentina,Colombia,Argentina,Colombia,0.61,0.61,0.255,1000,monte_carlo_match_slot_consensus
+Semifinals,101,Japan,Portugal,Japan,Portugal,0.071,0.071,0.0,1000,monte_carlo_match_slot_consensus
+Semifinals,102,Germany,Argentina,Argentina,Germany,0.336,0.0,0.336,1000,monte_carlo_match_slot_consensus
+Final,103,Japan,Argentina,Argentina,Japan,0.208,0.025,0.208,1000,monte_carlo_match_slot_consensus

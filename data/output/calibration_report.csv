@@ -1,9 +1,9 @@
 metric,value
-average_draw_probability,0.1271
+average_draw_probability,0.1416
 median_draw_probability,0.08
 minimum_draw_probability,0.08
 maximum_draw_probability,0.25
-high_confidence_matches,19.0
-medium_confidence_matches,10.0
+high_confidence_matches,10.0
+medium_confidence_matches,7.0
 low_confidence_matches,2.0
 simulation_runs,1000.0
